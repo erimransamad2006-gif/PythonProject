@@ -1,0 +1,25 @@
+# importing required libraries
+import mysql.connector
+
+dataBase = mysql.connector.connect(
+    host="localhost",  # Localhost for local connection
+    user="root",
+    passwd="root1",
+    database="practice"
+)
+
+print(dataBase)
+# preparing a cursor object
+cursorObject = dataBase.cursor()
+
+query = "SELECT employee_id, first_name, last_name FROM employees"
+cursorObject.execute(query)
+
+myresult = cursorObject.fetchall()
+
+for x in myresult:
+    print(x)
+
+# disconnecting from server
+
+dataBase.close()
